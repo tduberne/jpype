@@ -360,7 +360,7 @@ class ArrayTestCase(common.JPypeTestCase):
         a = np.array([1, 2, 3], np.int32)
         jarr = jpype.JArray(jpype.JFloat)(len(a))
         jarr[:] = a
-        self.assertTrue(isinstance(jarr[:], np.array))
+        self.assertTrue(isinstance(jarr[:], np.ndarray))
 
     def testArrayCtor1(self):
         jobject = jpype.JClass('java.lang.Object')
