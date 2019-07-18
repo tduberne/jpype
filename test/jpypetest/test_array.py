@@ -357,9 +357,10 @@ class ArrayTestCase(common.JPypeTestCase):
     @unittest.skipUnless(haveNumpy(), "numpy not available")
     def testArraySliceIsNumpyArray(self):
         import numpy as np
-        a = np.array([1, 2, 3], np.int32)
-        jarr = jpype.JArray(jpype.JFloat)(len(a))
-        jarr[:] = a
+        jarr = jpype.JArray(jpype.JFloat)(3)
+        jarr[0] = 1
+        jarr[1] = 1
+        jarr[2] = 1
         self.assertTrue(isinstance(jarr[:], np.ndarray))
 
     def testArrayCtor1(self):
