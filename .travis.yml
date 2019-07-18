@@ -111,7 +111,7 @@ matrix:
 
 install:
   - echo $PYTHON $INST
-  - $PYTHON setup.py sdist
+  - $PYTHON setup.py bdist_wheel
   - $PIP install $INST dist/* $NUMPY
   - $PIP install $INST -r test-requirements.txt
   - ant -f test/build.xml
