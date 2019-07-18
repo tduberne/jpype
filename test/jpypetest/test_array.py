@@ -372,6 +372,15 @@ class ArrayTestCase(common.JPypeTestCase):
         jarr[2] = 1
         self.assertTrue(isinstance(jarr[:], np.ndarray))
 
+    @unittest.skipUnless(haveNumpy(), "numpy not available")
+    def testArraySliceIsNumpyArrayByteFromJava(self):
+        import numpy as np
+        # get a byte array returned from a Java method.
+        s = jpype.JString('abc')
+        jarr = s.getBytes()
+        self.assertTrue(isinstance(jarr[:], np.ndarray))
+
+
     def testArrayCtor1(self):
         jobject = jpype.JClass('java.lang.Object')
         jarray = jpype.JArray(jobject)
