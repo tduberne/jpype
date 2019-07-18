@@ -354,6 +354,14 @@ class ArrayTestCase(common.JPypeTestCase):
         jarr[:] = a
         self.assertCountEqual(a, jarr)
 
+    @unittest.skipUnless(haveNumpy(), "numpy not available")
+    def testArraySliceIsNumpyArray(self):
+        import numpy as np
+        a = np.array([1, 2, 3], np.int32)
+        jarr = jpype.JArray(jpype.JFloat)(len(a))
+        jarr[:] = a
+        self.assertTrue(isinstance(jarr[:], np.array))
+
     def testArrayCtor1(self):
         jobject = jpype.JClass('java.lang.Object')
         jarray = jpype.JArray(jobject)
